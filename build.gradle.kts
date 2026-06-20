@@ -8,3 +8,11 @@
  plugins {
   java
  }
+
+// Java Plugin が自動で作成した jar タスクに対して、後から設定を追加している
+tasks.named<Jar>("jar") {
+  // アプリのエントリーポイントとなるクラスを指定している
+  manifest {
+    attributes["Main-Class"] = "com.gradlehero.themepark.RideStatusService"
+  }
+}

@@ -9,10 +9,23 @@
   java
  }
 
+ repositories {
+  mavenCentral()
+ }
+
+ dependencies {
+  testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
+  testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+ }
+
 // Java Plugin が自動で作成した jar タスクに対して、後から設定を追加している
 tasks.named<Jar>("jar") {
   // アプリのエントリーポイントとなるクラスを指定している
   manifest {
     attributes["Main-Class"] = "com.gradlehero.themepark.RideStatusService"
   }
+}
+
+tasks.named<Test>("test") {
+  useJUnitPlatform()
 }

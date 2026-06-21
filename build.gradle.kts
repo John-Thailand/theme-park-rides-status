@@ -6,7 +6,7 @@
  */
 
  plugins {
-  java
+  application
  }
 
  repositories {

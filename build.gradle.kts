@@ -18,12 +18,26 @@
   testRuntimeOnly("org.junit.platform:junit-platform-launcher")
  }
 
+// tasks.named<JavaCompile>("compileJava") {
+//   options.isVerbose = true
+// }
+
+tasks.withType<JavaCompile> {
+  options.isVerbose = true
+}
+
+tasks.named<Copy>("processResources") {
+  include("**/*.txt")
+}
+
 // Java Plugin が自動で作成した jar タスクに対して、後から設定を追加している
 tasks.named<Jar>("jar") {
   // アプリのエントリーポイントとなるクラスを指定している
   manifest {
     attributes["Main-Class"] = "com.gradlehero.themepark.RideStatusService"
   }
+  // Jarファイルの名前を設定
+  archiveFileName.set("test.jar")
 }
 
 tasks.named<Test>("test") {

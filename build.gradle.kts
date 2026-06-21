@@ -47,3 +47,8 @@ tasks.named<Jar>("jar") {
 tasks.named<Test>("test") {
   useJUnitPlatform()
 }
+
+tasks.register<JavaExec>("runJar") {
+  classpath(tasks.named<Jar>("jar").map { it.archiveFile })
+  args("teacups")
+}

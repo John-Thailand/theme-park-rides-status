@@ -5,18 +5,22 @@
  * Learn more about Gradle by exploring our Samples at https://docs.gradle.org/9.5.1/samples
  */
 
- plugins {
+plugins {
   application
- }
+}
 
- repositories {
+repositories {
   mavenCentral()
- }
+}
 
- dependencies {
+dependencies {
   testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
   testRuntimeOnly("org.junit.platform:junit-platform-launcher")
- }
+}
+
+application {
+  mainClass.set("com.gradlehero.themepark.RideStatusService")
+}
 
 // tasks.named<JavaCompile>("compileJava") {
 //   options.isVerbose = true

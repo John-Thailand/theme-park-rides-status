@@ -64,3 +64,20 @@ tasks.register<JavaExec>("runJar") {
   args("teacups")
   mainClass.set("com.gradlehero.themepark.RideStatusService")
 }
+
+testing {
+  suites {
+    val test by getting(JvmTestSuite::class) {
+      useJUnitJupiter()
+    }
+    register<JvmTestSuite>("integrationTest") {
+      dependencies {
+        implementation(project())
+      }
+    }
+  }
+}
+
+tasks.named("check") {
+  dependsOn(tasks.named("integrationTest"))
+}

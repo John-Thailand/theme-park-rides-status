@@ -16,6 +16,9 @@ repositories {
 dependencies {
   testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
   testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+  // Adding commons-lang3 dependency
+  implementation("org.apache.commons:commons-lang3:3.12.0")
+  testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
 }
 
 application {
@@ -50,5 +53,8 @@ tasks.named<Test>("test") {
 
 tasks.register<JavaExec>("runJar") {
   classpath(tasks.named<Jar>("jar").map { it.archiveFile })
+  // 実行時に必要なライブラリも参照する
+  classpath(configurations.runtimeClasspath)
   args("teacups")
+  mainClass.set("com.gradlehero.themepark.RideStatusService")
 }

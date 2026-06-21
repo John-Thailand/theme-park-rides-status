@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class RideStatusService {
     public static void main(String[] args) {
         if (args.length != 1) {
@@ -28,7 +30,7 @@ public class RideStatusService {
 
     public static String getRideStatus(String ride) {
         List<String> rideStatuses =
-            readFile(String.format("%s.txt", ride));
+            readFile(String.format("%s.txt", StringUtils.trim(ride)));
 
         return rideStatuses.get(
             new Random().nextInt(rideStatuses.size())

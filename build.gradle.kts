@@ -47,8 +47,14 @@ tasks.named<Jar>("jar") {
   archiveFileName.set("test.jar")
 }
 
-tasks.named<Test>("test") {
+// tasks.named<Test>("test") {
+//   useJUnitPlatform()
+// }
+
+// JUnit Platform(JUnit 5)を使ってテストを実行してね
+tasks.withType<Test>().configureEach {
   useJUnitPlatform()
+  include("**/RideStatusServiceFailureTest.class")
 }
 
 tasks.register<JavaExec>("runJar") {

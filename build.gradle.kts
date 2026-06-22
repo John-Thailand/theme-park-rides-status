@@ -7,7 +7,11 @@
 
 plugins {
   application
+  `maven-publish`
 }
+
+group = "com.gradlehero"
+version = "1.0-SNAPSHOT"
 
 // プロジェクト全体のJava設定
 // compileJava compileTestJava test runなどのJava関連タスクがJava17を使うようになる
@@ -95,4 +99,21 @@ tasks.withType<JavaExec>().configureEach {
   javaLauncher.set(javaToolchains.launcherFor {
     languageVersion.set(JavaLanguageVersion.of(17))
   })
+}
+
+publishing {
+  publications {
+    create<MavenPublication>("maven") {
+      from(components["java"])
+    }
+  }
+  repositories {
+    maven {
+      url = uri("<your-repository-url>")
+      credentials {
+        username = "aws"
+        password = System.getenv("CODEARTIFACT_AUTH_TOKEN")
+      }
+    }
+  }
 }

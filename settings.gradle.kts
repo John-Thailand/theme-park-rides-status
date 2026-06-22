@@ -6,3 +6,9 @@
  */
 
 rootProject.name = "theme-park-rides-status"
+
+plugins {
+  // Gradleが必要なJDKを自動ダウンロードできるようにするプラグイン
+  // Gradle全体の設定なのでsettings.gradle.ktsに記載しておく
+  id("org.gradle.toolchains.foojay-resolver-convention") version("0.4.0")
+}

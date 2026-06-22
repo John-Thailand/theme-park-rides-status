@@ -26,6 +26,8 @@ public class RideStatusService {
             rideName,
             rideStatus
         );
+
+        System.out.println(System.getProperty("java.version"));
     }
 
     public static String getRideStatus(String ride) {

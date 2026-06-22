@@ -9,6 +9,8 @@ plugins {
   application
 }
 
+// プロジェクト全体のJava設定
+// compileJava compileTestJava test runなどのJava関連タスクがJava17を使うようになる
 java {
   toolchain {
     languageVersion.set(JavaLanguageVersion.of(17))
@@ -86,4 +88,11 @@ testing {
 
 tasks.named("check") {
   dependsOn(tasks.named("integrationTest"))
+}
+
+// runとrunJarタスクのJavaバージョンを更新
+tasks.withType<JavaExec>().configureEach {
+  javaLauncher.set(javaToolchains.launcherFor {
+    languageVersion.set(JavaLanguageVersion.of(17))
+  })
 }

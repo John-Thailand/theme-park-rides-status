@@ -11,32 +11,18 @@ import java.util.Random;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 public class RideStatusService {
-    public static void main(String[] args) {
-        if (args.length != 1) {
-            System.out.println("A single ride name must be passed");
-            System.exit(1);
-        }
+    public static ObjectNode getRideStatus(String ride) {
+        List<String> rideStatuses = readFile(String.format("%s.txt", StringUtils.trim(ride)));
+        String rideStatus = rideStatuses.get(new Random().nextInt(rideStatuses.size()));
 
-        String rideName = args[0];
-        String rideStatus = getRideStatus(rideName);
+        ObjectNode node = new ObjectMapper().createObjectNode();
+        node.put("status", rideStatus);
 
-        System.out.printf(
-            "Current status of %s is '%s'%n",
-            rideName,
-            rideStatus
-        );
-
-        System.out.println(System.getProperty("java.version"));
-    }
-
-    public static String getRideStatus(String ride) {
-        List<String> rideStatuses =
-            readFile(String.format("%s.txt", StringUtils.trim(ride)));
-
-        return rideStatuses.get(
-            new Random().nextInt(rideStatuses.size())
-        );
+        return node;
     }
 
     private static List<String> readFile(String filename) {

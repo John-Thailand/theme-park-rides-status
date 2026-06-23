@@ -30,6 +30,7 @@ dependencies {
   testRuntimeOnly("org.junit.platform:junit-platform-launcher")
   // Adding commons-lang3 dependency
   implementation("org.apache.commons:commons-lang3:3.12.0")
+  implementation("com.fasterxml.jackson.core:jackson-databind:2.13.0")
   testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
 }
 

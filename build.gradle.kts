@@ -116,7 +116,7 @@ publishing {
       url = uri("<your-repository-url>")
       credentials {
         username = "aws"
-        password = System.getenv("CODEARTIFACT_AUTH_TOKEN")
+        password = "i-sing-in-the-shower"
       }
     }
   }

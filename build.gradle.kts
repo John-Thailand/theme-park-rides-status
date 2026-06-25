@@ -124,8 +124,14 @@ publishing {
 }
 
 // ./gradlew print -PmyPropName=myPropValue
+// tasks.register("print") {
+//   doLast {
+//     print(project.property("myPropName"))
+//   }
+// }
+
 tasks.register("print") {
   doLast {
-    print(project.property("myPropName"))
+    println(project.findProperty("myPropName") ?: "defaultValue")
   }
 }

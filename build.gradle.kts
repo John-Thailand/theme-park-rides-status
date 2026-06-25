@@ -122,3 +122,10 @@ publishing {
     }
   }
 }
+
+// ./gradlew print -PmyPropName=myPropValue
+tasks.register("print") {
+  doLast {
+    print(project.property("myPropName"))
+  }
+}

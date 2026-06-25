@@ -115,6 +115,7 @@ publishing {
     maven {
       url = uri("<your-repository-url>")
       credentials {
+        // ./gradlew publish -PmavenUsername=aws -PmavenPassword=<password>
         username = property("mavenUsername").toString()
         password = property("mavenPassword").toString()
       }

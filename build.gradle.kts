@@ -139,3 +139,8 @@ tasks.register("print") {
     }
   }
 }
+
+tasks.register<Copy>("copyHtml") {
+  from(layout.projectDirectory.file("src/main/resources/static/index.html"))
+  into(layout.buildDirectory)
+}

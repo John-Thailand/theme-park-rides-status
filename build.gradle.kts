@@ -115,8 +115,8 @@ publishing {
     maven {
       url = uri("<your-repository-url>")
       credentials {
-        username = "aws"
-        password = "i-sing-in-the-shower"
+        username = property("mavenUsername").toString()
+        password = property("mavenPassword").toString()
       }
     }
   }

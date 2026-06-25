@@ -133,5 +133,9 @@ publishing {
 tasks.register("print") {
   doLast {
     println(project.findProperty("myPropName") ?: "defaultValue")
+
+    if (project.hasProperty("myPropName1")) {
+      println("Doing some conditional build logic")
+    }
   }
 }
